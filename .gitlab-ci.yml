@@ -1,0 +1,40 @@
+# Joe's dotfiles
+# Copyright (C) 2023  Josep Jesus Bigorra Algaba (jjbigorra@gmail.com)
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+stages:
+  - lint
+  - notify-queue
+      
+check-nix-files-syntax:
+  image: nixos/nix:master
+  stage: lint
+  script: |
+    find . -name '*.nix' -print0 | xargs -r0 nix-instantiate --parse-only 
+    nix-shell -p statix --run 'statix check'
+    nix-shell -p deadnix --run 'deadnix -f'
+
+notify-queue:
+  image: nixos/nix:master
+  stage: notify-queue
+  before_script: |
+    mkdir $HOME/.aws
+    echo "[default]" >> $HOME/.aws/config
+    echo "region = eu-west-3" >> $HOME/.aws/config
+    echo "[default]" >> $HOME/.aws/credentials
+    echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> $HOME/.aws/credentials
+    echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> $HOME/.aws/credentials
+  script: |
+    nix-shell -p awscli2 --run "aws sqs send-message --queue-url $SQS_QUEUE_URL --message-body '{\"sha\": \"$CI_COMMIT_SHA\"}' --message-group-id \"lambda\""
