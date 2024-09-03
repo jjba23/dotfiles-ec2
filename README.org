@@ -13,7 +13,7 @@ See https://nixos.org/download.html#nixos-amazon for more ways to get NixOS, als
 
 I provision my cloud infrastructure with Nix, and also this AWS config gets magically deployed with it.
 
-See [[https://gitlab.com/jjba-projects/cloud-infra][my cloud infrastructure]] for more context and info.
+See [[https://github.com/jjba23/cloud-infra][my cloud infrastructure]] for more context and info.
 
 * WikiMusic
 
@@ -31,7 +31,7 @@ This config runs among other things my project, WikiMusic. You might need some p
     development -> "feature branch"
     development -> "trunk (master)"
     "feature branch" -> "trunk (master)"
-    "trunk (master)" -> "GitLab pushes message to SQS"
+    "trunk (master)" -> "GitHub pushes message to SQS"
 
     SQS -> "EC2 instance pulls from SQS"
   }

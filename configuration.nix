@@ -19,7 +19,8 @@
 let
   wikimusicSqsQueue =
     "https://sqs.eu-west-3.amazonaws.com/831168501272/wikimusic-version-release.fifo";
-  wikimusicSSRSqsQueue = "https://sqs.eu-west-3.amazonaws.com/831168501272/wikimusic-ssr-version-release.fifo";
+  wikimusicSSRSqsQueue =
+    "https://sqs.eu-west-3.amazonaws.com/831168501272/wikimusic-ssr-version-release.fifo";
   dotfilesSqsQueue =
     "https://sqs.eu-west-3.amazonaws.com/831168501272/dotfiles-ec2-version-release.fifo";
 in {
@@ -33,15 +34,15 @@ in {
         "https://nix-community.cachix.org"
         "https://cache.nixos.org/"
         "https://cache.iog.io"
-	"https://wikimusic-api.cachix.org"
-	"https://wikimusic-ssr.cachix.org"
+        "https://wikimusic-api.cachix.org"
+        "https://wikimusic-ssr.cachix.org"
         # "https://jdb-api.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-	# "jdb-api.cachix.org-1:foTSPfkghcj12xPzzydSaSfaBhmSNcaugcztEB8Je5Q="
-	"wikimusic-api.cachix.org-1:Lm/BHLGnsv75YHkDxEdv33cjwgbZfFSaXBvrX87+NI0="
+        # "jdb-api.cachix.org-1:foTSPfkghcj12xPzzydSaSfaBhmSNcaugcztEB8Je5Q="
+        "wikimusic-api.cachix.org-1:Lm/BHLGnsv75YHkDxEdv33cjwgbZfFSaXBvrX87+NI0="
         "wikimusic-ssr.cachix.org-1:T+rJqh9tVOb/1ZfMZls7jTsBueRzDK2vLcmMZDsoyEU="
       ];
     };
@@ -173,14 +174,11 @@ in {
       };
     };
 
-     wikimusic-ssr = {
+    wikimusic-ssr = {
       enable = true;
       description = "WikiMusic SSR";
       requires = [ "network-online.target" ];
-      after = [
-        "network-online.target"
-        "wikimusic-api.service"
-      ];
+      after = [ "network-online.target" "wikimusic-api.service" ];
       path = with pkgs; [ nix git gnumake ];
       script = ''
         nix run -L . -- "/root/Ontwikkeling/wikimusic-ssr/resources/config/run-production.toml"
@@ -217,7 +215,7 @@ in {
     #     StandardError = "journal";
     #   };
     # };
-    
+
     dotfiles-updater = {
       enable = true;
       description = "Dotfiles EC2 Updater";
@@ -261,7 +259,7 @@ in {
       };
     };
 
-        wikimusic-ssr-updater = {
+    wikimusic-ssr-updater = {
       enable = true;
       description = "WikiMusic SSR Updater";
       startAt = "*-*-* *:*/10:00"; # run every 10 minutes
@@ -343,7 +341,8 @@ in {
     secrets = {
       wikimusic_postgres_key = { };
       wikimusic_redis_key = { };
-      wikimusic_email_key = { };
+      amazon_ses_user = { };
+      amazon_ses_password = { };
     };
   };
 }

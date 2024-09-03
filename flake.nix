@@ -30,34 +30,23 @@
 
   outputs = { nixpkgs, home-manager, sops-nix, ... }@inputs:
     let
-      system = "x86_64-linux"; # or "aarch64-linux"
-      inherit (nixpkgs) lib;
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      buildInputs = with pkgs; [ gnumake statix deadnix nixfmt git ];
-    in {
-      nixosConfigurations = {
-        main = lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          inherit system;
-          modules = [
-            ./configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-            }
-            sops-nix.nixosModules.sops
-          ];
+      my-home-manager = {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
         };
       };
-      devShell.x86_64-linux = pkgs.mkShell {
-        inherit buildInputs;
-      };
-      devShell.aarch64-linux = pkgs.mkShell {
-        inherit buildInputs;
+      flakeModules = [
+        (import ./configuration.nix)
+        sops-nix.nixosModules.sops
+        home-manager.nixosModules.home-manager
+        my-home-manager
+      ];
+    in {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = { inherit inputs; };
+        modules = flakeModules;
       };
     };
 }

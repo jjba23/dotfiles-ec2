@@ -1,6 +1,7 @@
 wikimusic_postgres_key: ENC[AES256_GCM,data:8lPEE1ZIL7EpdyqfRXsT7nkXrLs=,iv:YQ6TAqke3urvUpwlE3ELV838Pj0lHs8Z8q08ivaPi+o=,tag:OFxgN6pZsKfh3d7FcP3ISA==,type:str]
 wikimusic_redis_key: ENC[AES256_GCM,data:zwSNjjvefIvH0L5lf+M6E9F2BMA=,iv:ggLneBLndHtRaGZeiRWXiu6oMfLeW/ClabFPT7sVNjs=,tag:wzNwhff5w9FT6p+zVgS0Uw==,type:str]
-wikimusic_email_key: ENC[AES256_GCM,data:cwO01jLQRGOjlL9xa9egK5QpVz6Snsq54vnPU7/V+p3ZOnsoDxfKbe6mwew=,iv:4JRMLkgsb0jtzKSgEuBpnAaPvGfOi7Iodlp8SLDvfdM=,tag:n0g0PjFnOFuO3pRNA9sCbA==,type:str]
+amazon_ses_password: ENC[AES256_GCM,data:JdL1ScWlOf0OtcloyHblJONeQThKshA+GOYRi7rPkRhQbDkwhqMrDg==,iv:bajJ6euqHv9qJ2LzQ2Fju9YLgHgU9appMl6CLncljWo=,tag:L30lIQYhtvsd1h4/N1wu/Q==,type:str]
+amazon_ses_user: ENC[AES256_GCM,data:vdY8NAm3+p8MIjlH2K/lhaifypc=,iv:+NfDvJQa47fchqv4CfxHvAGTZPT0OduCNmQ5m+XEQVU=,tag:8iTwbHAlNc9KdjLXOci5eQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -16,8 +17,8 @@ sops:
             aytVVm1JMG8xYlRkUFJJVmpDSkIvUlkKefHOYufmbhRWpw44Z7FltoSrRZP4sTRu
             OA45FoAHf1opb+4RbUGy5BZUZHdY81X9n8IfoehL/VBw+98e5AWO4A==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-04-19T09:52:48Z"
-    mac: ENC[AES256_GCM,data:Qoq3WMiISEK9MSUyEk3CBwhaKdI5MJ4U2X4RG3/M7n5Ukpa1q86DdSiF/7SNuIEC5cpWFqjmJSt4xII45AAV5SEStgeHB7uVjSkCaFvn4VSbzHV0geQCtdlQEsvmNnkZQzoEsmHa7pIO6Hme8lKXTLVy6YVSE/fQsJXJ3BCMkwk=,iv:qJYMTJMGGmHwZ6ACUCl8w81P/WZMdMHSaHdUZFTehbQ=,tag:YWMrEJlUwmKnW0/jDDu2HA==,type:str]
+    lastmodified: "2024-09-03T11:50:57Z"
+    mac: ENC[AES256_GCM,data:Tleqk1zhN2jI0nM57sIxjLvocjsx7KOPdP4g73y2Tqa43D/NcugxHkcyWnMP67ZYt9o8mnDPO8pMilDOsv3BLIrc7Q3IpkmuxXA1HNReC+zZtoFiyzjHjBL3rP+LzDoII7W0sZIWxT2qk+dAXVvpYulcFf+Odz2G2zKonyjwuOM=,iv:tX7pcPtQSfyu6OOjUdhbM6PSW6fpxKJT+uB3J5SrmYs=,tag:TJLhbf2ekl47yUHvxtPOAw==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.8.1
+    version: 3.9.0
