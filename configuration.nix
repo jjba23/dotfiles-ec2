@@ -36,12 +36,10 @@ in {
         "https://cache.iog.io"
         "https://wikimusic-api.cachix.org"
         "https://wikimusic-ssr.cachix.org"
-        # "https://jdb-api.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-        # "jdb-api.cachix.org-1:foTSPfkghcj12xPzzydSaSfaBhmSNcaugcztEB8Je5Q="
         "wikimusic-api.cachix.org-1:Lm/BHLGnsv75YHkDxEdv33cjwgbZfFSaXBvrX87+NI0="
         "wikimusic-ssr.cachix.org-1:T+rJqh9tVOb/1ZfMZls7jTsBueRzDK2vLcmMZDsoyEU="
       ];
@@ -88,7 +86,7 @@ in {
     neofetch
     mailutils
     direnv
-    postgresql
+    sqlite
     cachix
   ];
 
@@ -113,53 +111,14 @@ in {
   virtualisation.docker.enable = true;
   nixpkgs.config.allowUnfree = true;
 
-  services = {
-    openssh.enable = true;
-
-    postgresql = {
-      enable = true;
-      checkConfig = true;
-      package = pkgs.postgresql_15;
-      settings = { port = 55432; };
-      enableTCPIP = true;
-      authentication = lib.mkForce ''
-        local all all trust
-        host all all 0.0.0.0/0 md5
-        host all all ::1/128 md5
-      '';
-      initialScript = pkgs.writeText "init-sql-script" "\n";
-    };
-
-    postgresqlBackup = {
-      enable = true;
-      startAt = "*-*-* 01:15:00"; # 01:15 (at night) every day.
-      databases = [ "wikimusic_database" ];
-      location = "/var/backup/postgresql";
-      pgdumpOptions = lib.strings.concatMapStrings (x: " " + x) [
-        "-C"
-        "--port=55432"
-        ''
-          --file=/var/backup/postgresql/wikimusic_database_$(date "+%Y-%m-%d-%T").sql''
-      ];
-    };
-
-    redis.servers.wikimusic = {
-      enable = true;
-      port = 63379;
-      requirePassFile = config.sops.secrets.wikimusic_redis_key.path;
-    };
-  };
+  services = { openssh.enable = true; };
 
   systemd.services = {
     wikimusic-api = {
       enable = true;
       description = "WikiMusic API";
       requires = [ "network-online.target" ];
-      after = [
-        "network-online.target"
-        "postgresql.service"
-        "redis-wikimusic.service"
-      ];
+      after = [ "network-online.target" ];
       path = with pkgs; [ nix git gnumake ];
       script = ''
         nix run -L . -- "/root/Ontwikkeling/wikimusic-api/resources/config/run-production.toml"
@@ -192,29 +151,6 @@ in {
         StandardError = "journal";
       };
     };
-
-    # jdb-api = {
-    #   enable = true;
-    #   description = "JDB API";
-    #   requires = [ "network-online.target" ];
-    #   after = [
-    #     "network-online.target"
-    #     "postgresql.service"
-    #     "redis-wikimusic.service"
-    #   ];
-    #   path = with pkgs; [ nix git gnumake ];
-    #   script = ''
-    #     nix run --accept-flake-config . -- "/root/Ontwikkeling/jdb-api/resources/config/run-production.toml"
-    #   '';
-    #   serviceConfig = {
-    #     User = "root";
-    #     WorkingDirectory = "/root/Ontwikkeling/jdb-api";
-    #     Restart = "always";
-    #     RemainAfterExit = "no";
-    #     StandardOutput = "journal";
-    #     StandardError = "journal";
-    #   };
-    # };
 
     dotfiles-updater = {
       enable = true;
@@ -280,54 +216,21 @@ in {
       };
     };
 
-    # jdb-api-updater = {
-    #   enable = true;
-    #   description = "JDB API Updater";
-    #   startAt = "*-*-* *:*/10:00"; # run every 10 minutes
-    #   requires = [ "network-online.target" ];
-    #   after = [ "network-online.target" ];
-    #   path = with pkgs; [ nix git gawk gnumake awscli2 bash ];
-    #   script = ''
-    #     cmd=$(aws sqs receive-message --queue-url ${wikimusicSqsQueue} --max-number-of-messages 1)
-    #     if [[ -n $cmd ]]; then
-    #       git pull origin master || true
-    #       systemctl restart jdb-api.service || true
-    #     fi
-    #   '';
-    #   serviceConfig = {
-    #     User = "root";
-    #     WorkingDirectory = "/root/Ontwikkeling/jdb-api";
-    #     RemainAfterExit = "no";
-    #   };
-    # };
-
     wikimusic-database-backup = {
       enable = true;
       description = "WikiMusic Database Backup";
       startAt = "*-*-* 03:15:00"; # run at 03:15 (at night) every day.
-      after = [ "postgresql.service" "network-online.target" ];
-      requires = [ "postgresql.service" "network-online.target" ];
+      after = [ "network-online.target" ];
+      requires = [ "network-online.target" ];
       serviceConfig = {
-        WorkingDirectory = "/var/backup/postgresql";
+        WorkingDirectory = "/root";
         RemainAfterExit = "no";
       };
       path = with pkgs; [ awscli2 ];
       script = ''
-        aws s3 sync . s3://cloud-infra-state-jjba/wikimusic/backups/postgresql/
-      '';
-    };
-    wikimusic-database-cleanup-backup = {
-      enable = true;
-      description = "WikiMusic Database Cleanup Backup";
-      startAt =
-        "Sat *-*-1..7 18:00:00"; # run the first saturday of every month at 18h
-      serviceConfig = {
-        WorkingDirectory = "/var/backup/postgresql";
-        RemainAfterExit = "no";
-      };
-      path = with pkgs; [ awscli2 ];
-      script = ''
-        echo "TODO, implement me"
+        export BACKUP_ZIP_NAME="archive-$(date +"%Y-%m-%d")-wikimusic-sqlite.zip"
+        zip -r $BACKUP_ZIP_NAME wikimusic.sqlite
+        aws s3 cp $BACKUP_ZIP_NAME s3://cloud-infra-state-jjba/wikimusic/backups/sqlite/$BACKUP_ZIP_NAME
       '';
     };
   };
@@ -339,8 +242,6 @@ in {
       generateKey = false;
     };
     secrets = {
-      wikimusic_postgres_key = { };
-      wikimusic_redis_key = { };
       amazon_ses_user = { };
       amazon_ses_password = { };
     };

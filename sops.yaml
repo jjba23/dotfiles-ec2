@@ -1,5 +1,3 @@
-wikimusic_postgres_key: ENC[AES256_GCM,data:8lPEE1ZIL7EpdyqfRXsT7nkXrLs=,iv:YQ6TAqke3urvUpwlE3ELV838Pj0lHs8Z8q08ivaPi+o=,tag:OFxgN6pZsKfh3d7FcP3ISA==,type:str]
-wikimusic_redis_key: ENC[AES256_GCM,data:zwSNjjvefIvH0L5lf+M6E9F2BMA=,iv:ggLneBLndHtRaGZeiRWXiu6oMfLeW/ClabFPT7sVNjs=,tag:wzNwhff5w9FT6p+zVgS0Uw==,type:str]
 amazon_ses_password: ENC[AES256_GCM,data:JdL1ScWlOf0OtcloyHblJONeQThKshA+GOYRi7rPkRhQbDkwhqMrDg==,iv:bajJ6euqHv9qJ2LzQ2Fju9YLgHgU9appMl6CLncljWo=,tag:L30lIQYhtvsd1h4/N1wu/Q==,type:str]
 amazon_ses_user: ENC[AES256_GCM,data:vdY8NAm3+p8MIjlH2K/lhaifypc=,iv:+NfDvJQa47fchqv4CfxHvAGTZPT0OduCNmQ5m+XEQVU=,tag:8iTwbHAlNc9KdjLXOci5eQ==,type:str]
 sops:
