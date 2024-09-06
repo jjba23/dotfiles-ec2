@@ -226,7 +226,7 @@ in {
         WorkingDirectory = "/root";
         RemainAfterExit = "no";
       };
-      path = with pkgs; [ awscli2 ];
+      path = with pkgs; [ awscli2 zip ];
       script = ''
         export BACKUP_ZIP_NAME="archive-$(date +"%Y-%m-%d")-wikimusic-sqlite.zip"
         zip -r $BACKUP_ZIP_NAME wikimusic.sqlite
