@@ -47,6 +47,4 @@
 
   services = { openssh.enable = true; };
 
-  systemd.services = import ./services/custom;
-
 }
