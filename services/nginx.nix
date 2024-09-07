@@ -1,8 +1,8 @@
 {
   services.nginx = {
     enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
+    recommendedProxySettings = false;
+    recommendedTlsSettings = false;
     virtualHosts."grafana.jointhefreeworld.org" = {
       listen = [{
         addr = "0.0.0.0";
