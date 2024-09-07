@@ -134,7 +134,10 @@ in {
       recommendedTlsSettings = true;
       # other Nginx options
       virtualHosts."grafana.jointhefreeworld.org" = {
-        listen."*" = { port = 7979; };
+        listen = [{
+          addr = "127.0.0.1";
+          port = 7979;
+        }];
         enableACME = true;
         forceSSL = true;
         locations."/" = {
