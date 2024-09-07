@@ -1,1 +1,1 @@
-{ imports = [ ./nginx.nix ./grafana.nix ./custom ]; }
+{ imports = [ ./caddy.nix ./grafana.nix ./custom ]; }

@@ -29,5 +29,6 @@
     direnv
     sqlite
     cachix
+    caddy
   ];
 }
