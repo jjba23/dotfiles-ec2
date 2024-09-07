@@ -9,7 +9,7 @@
         port = 7979;
       }];
       locations."/" = {
-        proxyPass = "http://127.0.0.1:3000";
+        proxyPass = "http://127.0.0.1:3000/";
         extraConfig = ''
           proxy_ssl_server_name on;
           proxy_pass_header Authorization;
