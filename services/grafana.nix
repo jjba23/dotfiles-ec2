@@ -1,5 +1,5 @@
 {
-  grafana = {
+  services.grafana = {
     enable = true;
     settings = {
       server = {
