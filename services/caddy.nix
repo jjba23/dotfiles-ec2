@@ -4,7 +4,7 @@
     globalConfig = ''
       http_port 7979
       https_port 7979
-      default_bind 127.0.0.1
+      default_bind 0.0.0.0
     '';
     virtualHosts."grafana.jointhefreeworld.org".extraConfig = ''
       basic_auth {
