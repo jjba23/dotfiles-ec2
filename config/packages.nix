@@ -1,0 +1,33 @@
+{
+  environment.systemPackages = with pkgs; [
+    git
+    gnumake
+    autoconf
+    vim
+    neovim
+    emacs
+    zip
+    unzip
+    xz
+    home-manager
+    fish
+    curl
+    wget
+    docker-compose
+    htop
+    screen
+    ripgrep
+    jq
+    yq
+    awscli2
+    gawk
+    age
+    sops
+    openssl
+    neofetch
+    mailutils
+    direnv
+    sqlite
+    cachix
+  ];
+}
