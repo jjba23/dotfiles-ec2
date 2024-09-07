@@ -31,10 +31,7 @@
         job_name = "wikimusic-ssr";
         static_configs = [{
           targets = [ "127.0.0.1:6923" ];
-          labels = {
-            job = "wikimusic-ssr";
-            job-name = "wikimusic-ssr";
-          };
+          labels = { job = "wikimusic-ssr"; };
 
         }];
         honor_labels = true;
@@ -44,10 +41,7 @@
         job_name = "wikimusic-api";
         static_configs = [{
           targets = [ "127.0.0.1:50050" ];
-          labels = {
-            job = "wikimusic-api";
-            job-name = "wikimusic-api";
-          };
+          labels = { job = "wikimusic-api"; };
 
         }];
         honor_labels = true;
