@@ -12,11 +12,7 @@
       };
     };
 
-    globalConfig = {
-      scrape_interval = "10s";
-      honor_labels = true;
-      honor_timestamps = true;
-    };
+    globalConfig = { scrape_interval = "10s"; };
 
     scrapeConfigs = [
       {
@@ -38,6 +34,8 @@
             job = "wikimusic-ssr";
             job-name = "wikimusic-ssr";
           };
+          honor_labels = true;
+          honor_timestamps = true;
         }];
       }
       {
@@ -48,6 +46,8 @@
             job = "wikimusic-api";
             job-name = "wikimusic-api";
           };
+          honor_labels = true;
+          honor_timestamps = true;
         }];
       }
     ];
