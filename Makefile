@@ -20,13 +20,15 @@ nixos-dotfiles-install:
 	@make -s log-info MSG="installing dotfiles"
 	cp -f *.nix /etc/nixos/
 	cp -f README.org /etc/nixos/
+	cp -rf services /etc/nixos/services
+	cp -rf config /etc/nixos/config
 	rm -rf ~/secrets/example.yaml
 	mkdir -p ~/secrets && cp -f sops.yaml ~/secrets/example.yaml
 
 nr: nixos-dotfiles-install
 	@make -s log-info MSG="rebuilding NixOS system flake"
 	nixos-rebuild switch --verbose --impure --flake '/etc/nixos#nixos'
-	cp -f /etc/nixos/flake.lock flake.lock
+	cp -f flake.lock /etc/nixos/flake.lock
 
 fmt:
 	-find . -name '*.nix' -exec nixfmt {} \;

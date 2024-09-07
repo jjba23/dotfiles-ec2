@@ -42,11 +42,23 @@
         home-manager.nixosModules.home-manager
         my-home-manager
       ];
+      allSystems = [ "x86_64-linux" "aarch64-linux" ];
+
+      forAllSystems = fn:
+        nixpkgs.lib.genAttrs allSystems
+        (system: fn { pkgs = import nixpkgs { inherit system; }; });
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = { inherit inputs; };
         modules = flakeModules;
       };
+      devShells = forAllSystems ({ pkgs }: {
+        default = pkgs.mkShell {
+          nativeBuildInputs =
+            [ pkgs.gnumake pkgs.nixfmt pkgs.statix pkgs.statix ];
+        };
+      });
     };
 }
+
