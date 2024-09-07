@@ -8,6 +8,7 @@
     secrets = {
       amazon_ses_user = { };
       amazon_ses_password = { };
+      grafana_nginx_auth = { };
     };
   };
 }
