@@ -20,7 +20,9 @@ nixos-dotfiles-install:
 	@make -s log-info MSG="installing dotfiles"
 	cp -f *.nix /etc/nixos/
 	cp -f README.org /etc/nixos/
+	rm -rf /etc/nixos/services
 	cp -rf services /etc/nixos/services
+	rm -rf /etc/nixos/config
 	cp -rf config /etc/nixos/config
 	rm -rf ~/secrets/example.yaml
 	mkdir -p ~/secrets && cp -f sops.yaml ~/secrets/example.yaml
