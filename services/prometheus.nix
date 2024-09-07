@@ -27,11 +27,11 @@
       }
       {
         job_name = "wikimusic-ssr";
-        static_configs = [{ targets = [ "127.0.0.1:6923/metrics" ]; }];
+        static_configs = [{ targets = [ "127.0.0.1:6923" ]; }];
       }
       {
         job_name = "wikimusic-api";
-        static_configs = [{ targets = [ "127.0.0.1:50050/metrics" ]; }];
+        static_configs = [{ targets = [ "127.0.0.1:50050" ]; }];
       }
     ];
   };
