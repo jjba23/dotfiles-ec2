@@ -3,7 +3,6 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    # other Nginx options
     virtualHosts."grafana.jointhefreeworld.org" = {
       listen = [{
         addr = "0.0.0.0";
@@ -16,6 +15,7 @@
           proxy_pass_header Authorization;
           auth_basic "admin area";
           auth_basic_user_file /run/secrets/grafana_nginx_auth;
+          sendfile off;
         '';
       };
     };
