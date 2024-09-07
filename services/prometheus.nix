@@ -12,7 +12,11 @@
       };
     };
 
-    globalConfig.scrape_interval = "10s";
+    globalConfig = {
+      scrape_interval = "10s";
+      honor_labels = true;
+      honor_timestamps = true;
+    };
 
     scrapeConfigs = [
       {
@@ -24,14 +28,27 @@
             }"
           ];
         }];
+
       }
       {
         job_name = "wikimusic-ssr";
-        static_configs = [{ targets = [ "127.0.0.1:6923" ]; }];
+        static_configs = [{
+          targets = [ "127.0.0.1:6923" ];
+          labels = {
+            job = "wikimusic-ssr";
+            job-name = "wikimusic-ssr";
+          };
+        }];
       }
       {
         job_name = "wikimusic-api";
-        static_configs = [{ targets = [ "127.0.0.1:50050" ]; }];
+        static_configs = [{
+          targets = [ "127.0.0.1:50050" ];
+          labels = {
+            job = "wikimusic-api";
+            job-name = "wikimusic-api";
+          };
+        }];
       }
     ];
   };
