@@ -118,7 +118,7 @@ in {
       settings = {
         server = {
           # Listening Address
-          http_addr = "127.0.0.1";
+          http_addr = "0.0.0.0";
           # and Port
           http_port = 3000;
           # Grafana needs to know on which domain and URL it's running
@@ -135,11 +135,11 @@ in {
       # other Nginx options
       virtualHosts."grafana.jointhefreeworld.org" = {
         listen = [{
-          addr = "127.0.0.1";
+          addr = "0.0.0.0";
           port = 7979;
         }];
         locations."/" = {
-          proxyPass = "http://127.0.0.1:3000";
+          proxyPass = "http://0.0.0.0:3000";
           extraConfig = ''
             proxy_ssl_server_name on;
             proxy_pass_header Authorization;
