@@ -111,7 +111,45 @@ in {
   virtualisation.docker.enable = true;
   nixpkgs.config.allowUnfree = true;
 
-  services = { openssh.enable = true; };
+  services = {
+    openssh.enable = true;
+    grafana = {
+      enable = true;
+      settings = {
+        server = {
+          # Listening Address
+          http_addr = "127.0.0.1";
+          # and Port
+          http_port = 3000;
+          # Grafana needs to know on which domain and URL it's running
+          domain = "grafana.jointhefreeworld.org";
+          root_url = "https://grafana.jointhefreeworld.org/";
+          serve_from_sub_path = false;
+        };
+      };
+    };
+    nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+      # other Nginx options
+      virtualHosts."grafana.jointhefreeworld.org" = {
+        listen."*" = { port = 7979; };
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:3000";
+          extraConfig = ''
+            proxy_ssl_server_name on;
+            proxy_pass_header Authorization;
+            auth_basic "admin area";
+            auth_basic_user_file /run/secrets/grafana_nginx_auth;
+          '';
+        };
+      };
+    };
+
+  };
 
   systemd.services = {
     wikimusic-api = {

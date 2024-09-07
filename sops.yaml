@@ -1,5 +1,6 @@
 amazon_ses_password: ENC[AES256_GCM,data:toJalzxDdHc9T4x2y8PMcY9obt+4u2ngpBOuq5Qky2XJAI2/SMbBnENvsO8=,iv:bNnDJto9C83t+mrwW9pPxG3MmNcp9onApgQTFwnMbyg=,tag:1UTYtUx+IHj5hzyBveY06A==,type:str]
 amazon_ses_user: ENC[AES256_GCM,data:HB/NVVGJw4+Sp/R/DlbrzQH6GK0=,iv:3n7M6qpfzOnY8DB154cONtxvo13DwAfXxe98EGpLz/o=,tag:1EQxUmGboxgJcac7KmHafA==,type:str]
+grafana_nginx_auth: ENC[AES256_GCM,data:r0jAFjOMHVxBjWoF7OMOeKMIbSQLGd/dPw==,iv:LSksYBb3vmiio6Qtj1rASzhIQL2L+eAzmNv0iZStJWs=,tag:HNt+mDJxa3nrYE3tthXRoQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -15,8 +16,8 @@ sops:
             aytVVm1JMG8xYlRkUFJJVmpDSkIvUlkKefHOYufmbhRWpw44Z7FltoSrRZP4sTRu
             OA45FoAHf1opb+4RbUGy5BZUZHdY81X9n8IfoehL/VBw+98e5AWO4A==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-05T20:32:21Z"
-    mac: ENC[AES256_GCM,data:2lyWf52E8ibkG8IFewLkCGSS6pwm14l1W1St9R8KOlKH5nRaX32P98IAObrvq6oGoDJ3XBKXpZRopxz9qhn/Np8qOGAUId5QLVOMX8ZwdS4QNZg6v1UPYa7y6h666kjMS0GSYACwx8zLUES8d0NBTx1BYeIIy0cXecJKUw865Xg=,iv:O339MCS3DaEb1aprF29t88hI6nRIiL+dERCOrHiCU7E=,tag:aVlaQuLX6Zw/7x3DNKCo0g==,type:str]
+    lastmodified: "2024-09-07T11:52:29Z"
+    mac: ENC[AES256_GCM,data:7In2O4KPIXSyRTLJ2GgI9JXy1HdY/OyosVuQa2AG1Zjcc0Fq0ZE85hIUH85HEfOUfCGZxWamQK8FUh2pGqCRlr4ecGLoWWiXPgih12uxEOGuWVXI95WyJXmA1x+Rzbs0urrQ1aTlc6W20wpzZ9dkMZpoMwlfnKJ5FnD8rwoBGS0=,iv:wus6rrc0orinEE2plE2qxqzWB4+96hxqCbfjBDiQ9H0=,tag:0ai5i32ClRnJS1Sg5xdGVA==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.9.0
