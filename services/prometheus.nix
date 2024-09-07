@@ -24,7 +24,8 @@
             }"
           ];
         }];
-
+        honor_labels = true;
+        honor_timestamps = true;
       }
       {
         job_name = "wikimusic-ssr";
@@ -34,9 +35,10 @@
             job = "wikimusic-ssr";
             job-name = "wikimusic-ssr";
           };
-          honor_labels = true;
-          honor_timestamps = true;
+
         }];
+        honor_labels = true;
+        honor_timestamps = true;
       }
       {
         job_name = "wikimusic-api";
@@ -46,9 +48,10 @@
             job = "wikimusic-api";
             job-name = "wikimusic-api";
           };
-          honor_labels = true;
-          honor_timestamps = true;
+
         }];
+        honor_labels = true;
+        honor_timestamps = true;
       }
     ];
   };
