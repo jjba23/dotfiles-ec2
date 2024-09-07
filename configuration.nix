@@ -19,8 +19,8 @@
 {
   imports = [
     "${modulesPath}/virtualisation/amazon-image.nix"
-    "./services"
-    "./config"
+    "./services/default.nix"
+    "./config/default.nix"
   ];
 
   system.stateVersion = "24.05";
