@@ -17,11 +17,8 @@
 { config, pkgs, lib, modulesPath, ... }:
 
 {
-  imports = [
-    "${modulesPath}/virtualisation/amazon-image.nix"
-    "./services/default.nix"
-    "./config/default.nix"
-  ];
+  imports =
+    [ "${modulesPath}/virtualisation/amazon-image.nix" ./services ./config ];
 
   system.stateVersion = "24.05";
   system.autoUpgrade = {

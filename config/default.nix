@@ -1,1 +1,1 @@
-{ imports = [ "./nix.nix" "./packages.nix" "./network.nix" "./secrets.nix" ]; }
+{ imports = [ ./nix.nix ./packages.nix ./network.nix ./secrets.nix ]; }

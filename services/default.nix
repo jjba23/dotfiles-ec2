@@ -1,1 +1,1 @@
-{ imports = [ "./nginx.nix" "./grafana.nix" "./custom" ]; }
+{ imports = [ ./nginx.nix ./grafana.nix ./custom ]; }
