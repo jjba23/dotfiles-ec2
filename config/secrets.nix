@@ -1,8 +1,8 @@
 {
   sops = {
-    defaultSopsFile = /root/secrets/example.yaml;
+    defaultSopsFile = /home/joe/secrets/example.yaml;
     age = {
-      keyFile = "/root/.config/sops/age/keys.txt";
+      keyFile = "/home/joe/.config/sops/age/keys.txt";
       generateKey = false;
     };
     secrets = {
