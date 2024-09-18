@@ -29,7 +29,7 @@ nixos-dotfiles-install:
 
 nr: nixos-dotfiles-install
 	@make -s log-info MSG="rebuilding NixOS system flake"
-	nixos-rebuild switch --verbose --impure --flake '/etc/nixos#nixos'
+	nixos-rebuild switch --verbose --impure --flake --install-bootloader '/etc/nixos#nixos'
 	cp -f flake.lock /etc/nixos/flake.lock
 
 fmt:
