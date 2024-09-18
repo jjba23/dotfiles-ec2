@@ -24,8 +24,8 @@ nixos-dotfiles-install:
 	cp -rf services /etc/nixos/services
 	rm -rf /etc/nixos/config
 	cp -rf config /etc/nixos/config
-	rm -rf ~/secrets/example.yaml
-	mkdir -p ~/secrets && cp -f sops.yaml ~/secrets/example.yaml
+	rm -rf /home/joe/secrets/example.yaml
+	mkdir -p /home/joe/secrets && cp -f sops.yaml /home/joe/secrets/example.yaml
 
 nr: nixos-dotfiles-install
 	@make -s log-info MSG="rebuilding NixOS system flake"
