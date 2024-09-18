@@ -31,5 +31,6 @@
     cachix
     caddy
     stack
+    gnutar
   ];
 }
