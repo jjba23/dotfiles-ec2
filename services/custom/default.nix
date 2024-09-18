@@ -19,7 +19,7 @@ in {
         stack run -- "/root/Ontwikkeling/wikimusic-api/resources/config/run-production.toml"
       '';
       serviceConfig = {
-        User = "root";
+        User = "joe";
         WorkingDirectory = "/root/Ontwikkeling/wikimusic-api";
         Restart = "always";
         RemainAfterExit = "no";
@@ -32,13 +32,13 @@ in {
       enable = true;
       description = "WikiMusic SSR";
       requires = [ "network-online.target" ];
-      after = [ "network-online.target" "wikimusic-api.service" ];
+      after = [ "network-online.target" ];
       path = with pkgs; [ nix git gnumake stack gnutar ];
       script = ''
         stack run -- "/root/Ontwikkeling/wikimusic-ssr/resources/config/run-production.toml"
       '';
       serviceConfig = {
-        User = "root";
+        User = "joe";
         WorkingDirectory = "/root/Ontwikkeling/wikimusic-ssr";
         Restart = "always";
         RemainAfterExit = "no";
