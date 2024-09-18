@@ -14,9 +14,9 @@ in {
       description = "WikiMusic API";
       requires = [ "network-online.target" ];
       after = [ "network-online.target" ];
-      path = with pkgs; [ nix git gnumake ];
+      path = with pkgs; [ nix git gnumake stack ];
       script = ''
-        nix run -L . -- "/root/Ontwikkeling/wikimusic-api/resources/config/run-production.toml"
+        stack run -- "/root/Ontwikkeling/wikimusic-api/resources/config/run-production.toml"
       '';
       serviceConfig = {
         User = "root";
@@ -33,9 +33,9 @@ in {
       description = "WikiMusic SSR";
       requires = [ "network-online.target" ];
       after = [ "network-online.target" "wikimusic-api.service" ];
-      path = with pkgs; [ nix git gnumake ];
+      path = with pkgs; [ nix git gnumake stack ];
       script = ''
-        nix run -L . -- "/root/Ontwikkeling/wikimusic-ssr/resources/config/run-production.toml"
+        stack run -- "/root/Ontwikkeling/wikimusic-ssr/resources/config/run-production.toml"
       '';
       serviceConfig = {
         User = "root";

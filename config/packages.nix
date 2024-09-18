@@ -30,5 +30,6 @@
     sqlite
     cachix
     caddy
+    stack
   ];
 }
