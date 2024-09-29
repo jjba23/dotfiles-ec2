@@ -44,4 +44,6 @@
 
   services = { openssh.enable = true; };
 
+  boot.loader.grub.configurationLimit = 20;
+
 }
