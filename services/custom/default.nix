@@ -46,7 +46,16 @@
       description = "Byggsteg";
       requires = [ "network-online.target" ];
       after = [ "network-online.target" ];
-      path = with pkgs; [ nix git gnumake gnutar zip unzip guile ];
+      path = with pkgs; [
+        nix
+        git
+        gnumake
+        gnutar
+        zip
+        unzip
+        guile
+        unixtools.xxd
+      ];
       script = ''
         GUILE_AUTO_COMPILE=0 guile run-server.scm
       '';
