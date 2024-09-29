@@ -46,7 +46,7 @@
       description = "Byggsteg";
       requires = [ "network-online.target" ];
       after = [ "network-online.target" ];
-      path = with pkgs; [ nix git gnumake gnutar zip unzip ];
+      path = with pkgs; [ nix git gnumake gnutar zip unzip guile ];
       script = ''
         make server
       '';
