@@ -32,5 +32,6 @@
     caddy
     stack
     gnutar
+    guile
   ];
 }
