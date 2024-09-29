@@ -51,6 +51,7 @@
         git
         gnumake
         gnutar
+        stack
         zip
         unzip
         guile
