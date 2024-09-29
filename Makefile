@@ -29,6 +29,7 @@ nixos-dotfiles-install:
 
 nr: nixos-dotfiles-install
 	@make -s log-info MSG="rebuilding NixOS system flake"
+	nix-shell -p mount --run "sudo mount -o remount,size=50G tmpfs"
 	nixos-rebuild switch --verbose --impure --flake '/etc/nixos#nixos'
 	cp -f flake.lock /etc/nixos/flake.lock
 
