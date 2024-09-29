@@ -41,6 +41,25 @@
       };
     };
 
+    byggsteg = {
+      enable = true;
+      description = "Byggsteg";
+      requires = [ "network-online.target" ];
+      after = [ "network-online.target" ];
+      path = with pkgs; [ nix git gnumake gnutar zip unzip ];
+      script = ''
+        make server
+      '';
+      serviceConfig = {
+        User = "joe";
+        WorkingDirectory = "/home/joe/Ontwikkeling/byggsteg";
+        Restart = "always";
+        RemainAfterExit = "no";
+        StandardOutput = "journal";
+        StandardError = "journal";
+      };
+    };
+
     wikimusic-database-backup = {
       enable = true;
       description = "WikiMusic Database Backup";

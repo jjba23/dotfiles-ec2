@@ -19,23 +19,4 @@ See [[https://github.com/jjba23/cloud-infra][my cloud infrastructure]] for more 
 
 This config runs among other things my project, WikiMusic. You might need some prior setup.
 
-* Deployment model of these dotfiles via CI/CD
-
-#+BEGIN_SRC dot :file resources/images/dotfiles-deployment-model.png :exports results :mkdirp yes
-  digraph mygraph {
-    fontname="Roboto,Helvetica,Arial,sans-serif"
-    node [fontname="Roboto,Helvetica,Arial,sans-serif"]
-    edge [fontname="Roboto,Helvetica,Arial,sans-serif"]
-    node [shape=oval];
-
-    development -> "feature branch"
-    development -> "trunk (master)"
-    "feature branch" -> "trunk (master)"
-    "trunk (master)" -> "GitHub pushes message to SQS"
-
-    SQS -> "EC2 instance pulls from SQS"
-  }
-#+END_SRC
-
-#+RESULTS:
-[[file:resources/images/dotfiles-deployment-model.png]]
+* Byggsteg
