@@ -48,7 +48,7 @@
       after = [ "network-online.target" ];
       path = with pkgs; [ nix git gnumake gnutar zip unzip guile ];
       script = ''
-        make server
+        GUILE_AUTO_COMPILE=0 guile run-server.scm
       '';
       serviceConfig = {
         User = "joe";
