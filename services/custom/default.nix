@@ -62,9 +62,9 @@
       '';
       serviceConfig = {
         User = "joe";
-        WorkingDirectory = "/home/joe/Ontwikkeling/byggsteg";
+        WorkingDirectory = "/var/log/byggsteg/job-clone/byggsteg/trunk";
         Restart = "always";
-        RemainAfterExit = "no";
+        RemainAfterExit = "yes";
         StandardOutput = "journal";
         StandardError = "journal";
       };
