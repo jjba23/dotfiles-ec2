@@ -56,13 +56,12 @@
         unzip
         guile
         unixtools.xxd
-        sudo
       ];
       script = ''
         GUILE_AUTO_COMPILE=0 guile run-server.scm
       '';
       serviceConfig = {
-        User = "joe";
+        User = "root";
         WorkingDirectory = "/var/log/byggsteg/job-clone/byggsteg/trunk";
         Restart = "always";
         RemainAfterExit = "yes";
