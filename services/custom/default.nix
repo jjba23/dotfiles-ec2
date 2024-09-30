@@ -56,6 +56,7 @@
         unzip
         guile
         unixtools.xxd
+        sudo
       ];
       script = ''
         GUILE_AUTO_COMPILE=0 guile run-server.scm
