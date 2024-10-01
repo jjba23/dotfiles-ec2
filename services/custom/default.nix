@@ -56,6 +56,8 @@
         unzip
         guile
         unixtools.xxd
+        sbt
+        scala_2_13
       ];
       script = ''
         GUILE_AUTO_COMPILE=0 guile run-server.scm
