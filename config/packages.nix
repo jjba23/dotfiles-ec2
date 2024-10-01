@@ -33,5 +33,7 @@
     stack
     gnutar
     guile
+    scala_2_13
+    sbt
   ];
 }
