@@ -10,13 +10,13 @@
       after = [ "network-online.target" ];
       path = with pkgs; [ nix git gnumake stack gnutar ];
       script = ''
-        stack run -- "/home/joe/Ontwikkeling/wikimusic-api/resources/config/run-production.toml"
+        stack run -- "/var/log/byggsteg/job-clone/wikimusic-api/trunk/resources/config/run-production.toml"
       '';
       serviceConfig = {
-        User = "joe";
-        WorkingDirectory = "/home/joe/Ontwikkeling/wikimusic-api";
+        User = "root";
+        WorkingDirectory = "/var/log/byggsteg/job-clone/wikimusic-api/trunk";
         Restart = "always";
-        RemainAfterExit = "no";
+        RemainAfterExit = "yes";
         StandardOutput = "journal";
         StandardError = "journal";
       };
@@ -29,13 +29,13 @@
       after = [ "network-online.target" ];
       path = with pkgs; [ nix git gnumake stack gnutar ];
       script = ''
-        stack run -- "/home/joe/Ontwikkeling/wikimusic-ssr/resources/config/run-production.toml"
+        stack run -- "/var/log/byggsteg/job-clone/wikimusic-ssr/trunk/resources/config/run-production.toml"
       '';
       serviceConfig = {
         User = "joe";
-        WorkingDirectory = "/home/joe/Ontwikkeling/wikimusic-ssr";
+        WorkingDirectory = "/var/log/byggsteg/job-clone/wikimusic-ssr/trunk";
         Restart = "always";
-        RemainAfterExit = "no";
+        RemainAfterExit = "yes";
         StandardOutput = "journal";
         StandardError = "journal";
       };
