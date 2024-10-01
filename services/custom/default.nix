@@ -32,7 +32,7 @@
         stack run -- "/var/log/byggsteg/job-clone/wikimusic-ssr/trunk/resources/config/run-production.toml"
       '';
       serviceConfig = {
-        User = "joe";
+        User = "root";
         WorkingDirectory = "/var/log/byggsteg/job-clone/wikimusic-ssr/trunk";
         Restart = "always";
         RemainAfterExit = "yes";
