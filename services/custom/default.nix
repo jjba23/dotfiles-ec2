@@ -54,6 +54,7 @@
         stack
         zip
         unzip
+        python3
         guile
         unixtools.xxd
         sbt

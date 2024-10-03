@@ -24,6 +24,7 @@
     age
     sops
     openssl
+    python3
     neofetch
     mailutils
     direnv
